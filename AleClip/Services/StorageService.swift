@@ -1,3 +1,11 @@
+//
+//  StorageService.swift
+//  AleClip
+//
+//  Created for AleClip iOS v2.0.1 (2026).
+//  Copyright © 2026 AleClip. All rights reserved.
+//
+
 import Foundation
 import UIKit
 import SwiftUI
@@ -12,9 +20,23 @@ public struct AppSettings: Codable, Sendable {
 public final class StorageService: ObservableObject {
     public static let shared = StorageService()
 
-    @Published public private(set) var clips: [ClipItem] = []
+    @Published public var clips: [ClipItem] = []
     @Published public private(set) var deletedClips: [ClipItem] = []
     @Published public var settings: AppSettings = AppSettings()
+
+    // Aliases for View Compatibility
+    public var activeClips: [ClipItem] {
+        get { clips }
+        set { clips = newValue }
+    }
+
+    public var maxClips: Int {
+        get { settings.historyLimit }
+        set {
+            settings.historyLimit = newValue
+            saveSettings()
+        }
+    }
 
     private let fileManager = FileManager.default
     private let storageDirectoryURL: URL
@@ -26,8 +48,7 @@ public final class StorageService: ObservableObject {
     private var undoStack: [(clip: ClipItem, originalIndex: Int)] = []
 
     private init() {
-        // Use App Group directory if configured, otherwise Document directory
-        let appGroupId = "group.com.darwin.aleclip"
+        let appGroupId = "group.com.themanoftalent.aleclip"
         let groupURL = fileManager.containerURL(forSecurityApplicationGroupIdentifier: appGroupId)
         let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
 
@@ -64,6 +85,26 @@ public final class StorageService: ObservableObject {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.35, execute: workItem)
     }
 
+    @discardableResult
+    public func addClip(
+        type: ClipType,
+        content: String,
+        imagePath: String? = nil,
+        imageData: Data? = nil,
+        isPinned: Bool = false
+    ) -> ClipItem {
+        let hash = "\(type.rawValue):\(content)".data(using: .utf8)?.base64EncodedString() ?? UUID().uuidString
+        let item = ClipItem(
+            type: type,
+            plainText: content,
+            imageFileName: imagePath,
+            isPinned: isPinned,
+            contentHash: hash
+        )
+        addClip(item)
+        return item
+    }
+
     public func addClip(_ clip: ClipItem) {
         if let existingIndex = clips.firstIndex(where: { $0.contentHash == clip.contentHash }) {
             var existing = clips.remove(at: existingIndex)
@@ -78,43 +119,27 @@ public final class StorageService: ObservableObject {
         scheduleSaveHistory()
     }
 
+    public func updateClip(_ updated: ClipItem) {
+        if let index = clips.firstIndex(where: { $0.id == updated.id }) {
+            clips[index] = updated
+            scheduleSaveHistory()
+        }
+    }
+
+    public func togglePin(id: UUID) {
+        togglePin(for: id)
+    }
+
     public func togglePin(for clipId: UUID) {
         guard let index = clips.firstIndex(where: { $0.id == clipId }) else { return }
         clips[index].isPinned.toggle()
         scheduleSaveHistory()
     }
 
-    public func renameClip(id: UUID, newTitle: String) {
-        guard let index = clips.firstIndex(where: { $0.id == id }) else { return }
-        clips[index].title = newTitle.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? nil : newTitle
-        scheduleSaveHistory()
-    }
-
-    public func updatePlainText(id: UUID, newText: String) {
-        guard let index = clips.firstIndex(where: { $0.id == id }) else { return }
-        clips[index].plainText = newText
-        clips[index].lastUsedAt = Date()
-        scheduleSaveHistory()
-    }
-
     @discardableResult
     public func deleteClip(id: UUID, permanent: Bool = false) -> ClipItem? {
         if permanent {
-            if let index = deletedClips.firstIndex(where: { $0.id == id }) {
-                let removed = deletedClips.remove(at: index)
-                undoStack.removeAll { $0.clip.id == id }
-                cleanupBlobIfNotReferenced(filename: removed.imageFileName)
-                saveDeletedHistory()
-                return removed
-            }
-            if let index = clips.firstIndex(where: { $0.id == id }) {
-                let removed = clips.remove(at: index)
-                undoStack.removeAll { $0.clip.id == id }
-                cleanupBlobIfNotReferenced(filename: removed.imageFileName)
-                scheduleSaveHistory()
-                return removed
-            }
-            return nil
+            return permanentlyDeleteClip(id: id)
         }
 
         // Soft deletion
@@ -139,6 +164,25 @@ public final class StorageService: ObservableObject {
         scheduleSaveHistory()
         saveDeletedHistory()
         return removed
+    }
+
+    @discardableResult
+    public func permanentlyDeleteClip(id: UUID) -> ClipItem? {
+        if let index = deletedClips.firstIndex(where: { $0.id == id }) {
+            let removed = deletedClips.remove(at: index)
+            undoStack.removeAll { $0.clip.id == id }
+            cleanupBlobIfNotReferenced(filename: removed.imageFileName)
+            saveDeletedHistory()
+            return removed
+        }
+        if let index = clips.firstIndex(where: { $0.id == id }) {
+            let removed = clips.remove(at: index)
+            undoStack.removeAll { $0.clip.id == id }
+            cleanupBlobIfNotReferenced(filename: removed.imageFileName)
+            scheduleSaveHistory()
+            return removed
+        }
+        return nil
     }
 
     @discardableResult
@@ -179,26 +223,6 @@ public final class StorageService: ObservableObject {
         saveDeletedHistory()
     }
 
-    public func clearUnpinned() {
-        let unpinned = clips.filter { !$0.isPinned }
-        for item in unpinned {
-            deletedClips.removeAll { $0.id == item.id }
-            deletedClips.insert(item, at: 0)
-        }
-        clips.removeAll { !$0.isPinned }
-
-        if deletedClips.count > 100 {
-            let overflow = deletedClips.suffix(from: 100)
-            for item in overflow {
-                cleanupBlobIfNotReferenced(filename: item.imageFileName)
-            }
-            deletedClips = Array(deletedClips.prefix(100))
-        }
-
-        saveHistory()
-        saveDeletedHistory()
-    }
-
     private func cleanupBlobIfNotReferenced(filename: String?) {
         guard let filename = filename else { return }
         let referencedInClips = clips.contains { $0.imageFileName == filename }
@@ -236,7 +260,7 @@ public final class StorageService: ObservableObject {
 
     // MARK: - Images / Blobs
 
-    public func saveImageBlob(_ data: Data) -> String? {
+    public func saveImageBlob(data: Data) -> String? {
         let filename = "\(UUID().uuidString).png"
         let fileURL = blobsDirectoryURL.appendingPathComponent(filename)
         do {
@@ -248,10 +272,11 @@ public final class StorageService: ObservableObject {
         }
     }
 
-    public func loadImageBlob(named filename: String) -> UIImage? {
+    public func loadImageBlob(filename: String?) -> Data? {
+        guard let filename = filename else { return nil }
         let fileURL = blobsDirectoryURL.appendingPathComponent(filename)
         guard fileManager.fileExists(atPath: fileURL.path) else { return nil }
-        return UIImage(contentsOfFile: fileURL.path)
+        return try? Data(contentsOf: fileURL)
     }
 
     private func deleteBlob(named filename: String) {
@@ -337,32 +362,29 @@ public final class StorageService: ObservableObject {
 
     // MARK: - Export & Import
 
-    public func exportJSON(to targetURL: URL) throws {
+    public func exportBackupJSON() -> Data? {
         let encoder = JSONEncoder()
         encoder.outputFormatting = .prettyPrinted
         encoder.dateEncodingStrategy = .iso8601
-        let data = try encoder.encode(clips)
-        try data.write(to: targetURL, options: .atomic)
+        return try? encoder.encode(clips)
     }
 
-    public func importJSON(from sourceURL: URL) throws -> Int {
-        let data = try Data(contentsOf: sourceURL)
+    public func importBackupJSON(data: Data) -> Bool {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
-        let imported = try decoder.decode([ClipItem].self, from: data)
+        guard let imported = try? decoder.decode([ClipItem].self, from: data) else {
+            return false
+        }
 
-        var addedCount = 0
         let existingHashes = Set(clips.map { $0.contentHash })
-
         for item in imported {
             if !existingHashes.contains(item.contentHash) {
                 clips.append(item)
-                addedCount += 1
             }
         }
 
         pruneHistoryIfNeeded()
         saveHistory()
-        return addedCount
+        return true
     }
 }
