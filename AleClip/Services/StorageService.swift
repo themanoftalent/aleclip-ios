@@ -272,7 +272,7 @@ public final class StorageService: ObservableObject {
         }
     }
 
-    public func loadImageBlob(filename: String?) -> Data? {
+    public nonisolated func loadImageBlob(filename: String?) -> Data? {
         guard let filename = filename else { return nil }
         let fileURL = blobsDirectoryURL.appendingPathComponent(filename)
         guard fileManager.fileExists(atPath: fileURL.path) else { return nil }

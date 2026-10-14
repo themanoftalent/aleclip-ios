@@ -9,6 +9,7 @@
 import SwiftUI
 import UniformTypeIdentifiers
 
+@MainActor
 public struct SettingsView: View {
     @ObservedObject private var storage = StorageService.shared
     @ObservedObject private var clipboard = ClipboardService.shared

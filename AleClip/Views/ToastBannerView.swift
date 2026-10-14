@@ -15,6 +15,7 @@ public enum ToastType {
     case success(String)
 }
 
+@MainActor
 public struct ToastBannerView: View {
     let type: ToastType
     let onDismiss: () -> Void

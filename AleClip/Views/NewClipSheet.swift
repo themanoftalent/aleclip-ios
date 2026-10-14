@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+@MainActor
 public struct NewClipSheet: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.colorScheme) private var colorScheme

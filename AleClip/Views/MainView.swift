@@ -58,6 +58,7 @@ public enum FilterCategory: Hashable {
     }
 }
 
+@MainActor
 public struct MainView: View {
     @ObservedObject private var storage = StorageService.shared
     @ObservedObject private var clipboard = ClipboardService.shared

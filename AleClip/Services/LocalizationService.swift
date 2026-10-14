@@ -25,25 +25,36 @@ public enum AppLanguage: String, CaseIterable, Identifiable, Sendable {
     }
 }
 
-@MainActor
 public func loc(_ key: String) -> String {
     LocalizationService.shared.localizedString(key)
 }
 
-@MainActor
 public func locF(_ key: String, _ arguments: CVarArg...) -> String {
     let format = LocalizationService.shared.localizedString(key)
     return String(format: format, locale: Locale.current, arguments: arguments)
 }
 
-@MainActor
-public final class LocalizationService: ObservableObject {
+public final class LocalizationService: ObservableObject, @unchecked Sendable {
     public static let shared = LocalizationService()
 
     @Published public private(set) var currentLanguage: AppLanguage = .system
 
     private let userDefaultsKey = "selected_app_language"
-    private var bundle: Bundle = .main
+    private let lock = NSLock()
+    private var _bundle: Bundle = .main
+
+    private var bundle: Bundle {
+        get {
+            lock.lock()
+            defer { lock.unlock() }
+            return _bundle
+        }
+        set {
+            lock.lock()
+            defer { lock.unlock() }
+            _bundle = newValue
+        }
+    }
 
     private init() {
         let saved = UserDefaults.standard.string(forKey: userDefaultsKey) ?? "system"
@@ -52,10 +63,12 @@ public final class LocalizationService: ObservableObject {
     }
 
     public func setLanguage(_ lang: AppLanguage) {
-        self.currentLanguage = lang
-        UserDefaults.standard.set(lang.rawValue, forKey: userDefaultsKey)
-        updateBundle()
-        objectWillChange.send()
+        DispatchQueue.main.async {
+            self.currentLanguage = lang
+            UserDefaults.standard.set(lang.rawValue, forKey: self.userDefaultsKey)
+            self.updateBundle()
+            self.objectWillChange.send()
+        }
     }
 
     public func setLanguage(_ rawLang: String) {
@@ -63,7 +76,7 @@ public final class LocalizationService: ObservableObject {
         setLanguage(lang)
     }
 
-    public func localizedString(_ key: String) -> String {
+    public nonisolated func localizedString(_ key: String) -> String {
         return bundle.localizedString(forKey: key, value: nil, table: nil)
     }
 

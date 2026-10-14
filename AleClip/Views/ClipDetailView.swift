@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+@MainActor
 public struct ClipDetailView: View {
     @Binding var item: ClipItem
     let isTrashMode: Bool
@@ -109,7 +110,7 @@ public struct ClipDetailView: View {
     private var contentEditorSection: some View {
         VStack(alignment: .leading, spacing: 10) {
             switch item.type {
-            case .text, .link:
+            case .text, .richText, .html, .link:
                 TextEditor(text: $editedContent)
                     .font(.system(size: 15, design: item.type == .link ? .monospaced : .default))
                     .frame(minHeight: 180)

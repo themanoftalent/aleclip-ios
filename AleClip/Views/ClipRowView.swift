@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+@MainActor
 public struct ClipRowView: View {
     let item: ClipItem
     let isTrashMode: Bool
@@ -197,7 +198,7 @@ public struct ClipRowView: View {
     @ViewBuilder
     private var contentPreview: some View {
         switch item.type {
-        case .text:
+        case .text, .richText, .html:
             Text(item.content)
                 .font(.system(size: 14))
                 .foregroundColor(.primary)

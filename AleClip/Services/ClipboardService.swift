@@ -155,7 +155,9 @@ final class ClipboardService: ObservableObject {
             }
         case .color:
             pasteboard.string = item.content
-        case .text, .file:
+        case .text, .richText, .html, .file:
+            pasteboard.string = item.content
+        @unknown default:
             pasteboard.string = item.content
         }
         
