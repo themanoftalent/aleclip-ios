@@ -1,0 +1,77 @@
+name: iOS Build & App Store Archive
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+    inputs:
+      upload_to_testflight:
+        description: 'Upload build to TestFlight / App Store Connect'
+        required: false
+        type: boolean
+        default: false
+
+jobs:
+  build:
+    name: Build & Verify AleClip iOS
+    runs-on: macos-14
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Show Xcode Version
+        run: |
+          xcodebuild -version
+          xcrun --sdk iphoneos --show-sdk-path
+
+      - name: Validate Localizable Strings & Plists
+        run: |
+          plutil -lint AleClip/Info.plist
+          plutil -lint AleClipShareExtension/Info.plist
+          plutil -lint AleClip/Resources/PrivacyInfo.xcprivacy
+          plutil -lint AleClip/Resources/en.lproj/Localizable.strings
+          plutil -lint AleClip/Resources/tr.lproj/Localizable.strings
+          plutil -lint AleClip.xcodeproj/project.pbxproj
+
+      - name: Build AleClip iOS Application
+        run: |
+          xcodebuild clean build \
+            -project AleClip.xcodeproj \
+            -scheme AleClip \
+            -destination "generic/platform=iOS" \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_IDENTITY="" \
+            COMPILER_INDEX_STORE_ENABLE=NO
+
+      - name: Build AleClip Share Extension
+        run: |
+          xcodebuild clean build \
+            -project AleClip.xcodeproj \
+            -scheme AleClipShareExtension \
+            -destination "generic/platform=iOS" \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_IDENTITY="" \
+            COMPILER_INDEX_STORE_ENABLE=NO
+
+      - name: Create Unsigned Archive (for Artifacts)
+        run: |
+          xcodebuild archive \
+            -project AleClip.xcodeproj \
+            -scheme AleClip \
+            -destination "generic/platform=iOS" \
+            -archivePath "build/AleClip.xcarchive" \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_IDENTITY=""
+
+      - name: Upload Archive Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: AleClip-iOS-Archive
+          path: build/AleClip.xcarchive
+          retention-days: 14

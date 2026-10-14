@@ -1,0 +1,588 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A10100012C00000000000001 /* AleClipApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10200012C00000000000001 /* AleClipApp.swift */; };
+		A10100022C00000000000002 /* ClipItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10200022C00000000000002 /* ClipItem.swift */; };
+		A10100032C00000000000003 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10200032C00000000000003 /* StorageService.swift */; };
+		A10100042C00000000000004 /* LocalizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10200042C00000000000004 /* LocalizationService.swift */; };
+		A10100052C00000000000005 /* HapticService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10200052C00000000000005 /* HapticService.swift */; };
+		A10100062C00000000000006 /* ClipboardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10200062C00000000000006 /* ClipboardService.swift */; };
+		A10100072C00000000000007 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10200072C00000000000007 /* MainView.swift */; };
+		A10100082C00000000000008 /* ClipRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10200082C00000000000008 /* ClipRowView.swift */; };
+		A10100092C00000000000009 /* ClipDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10200092C00000000000009 /* ClipDetailView.swift */; };
+		A101000A2C0000000000000A /* NewClipSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A102000A2C0000000000000A /* NewClipSheet.swift */; };
+		A101000B2C0000000000000B /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A102000B2C0000000000000B /* SettingsView.swift */; };
+		A101000C2C0000000000000C /* WatermarkLogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A102000C2C0000000000000C /* WatermarkLogoView.swift */; };
+		A101000D2C0000000000000D /* ToastBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A102000D2C0000000000000D /* ToastBannerView.swift */; };
+		A101000E2C0000000000000E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A102000E2C0000000000000E /* Assets.xcassets */; };
+		A101000F2C0000000000000F /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = A102000F2C0000000000000F /* PrivacyInfo.xcprivacy */; };
+		A10100102C00000000000010 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A10200102C00000000000010 /* Localizable.strings */; };
+		A10100112C00000000000011 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10200112C00000000000011 /* ShareViewController.swift */; };
+		A10100122C00000000000012 /* AleClipShareExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = A10200122C00000000000012 /* AleClipShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A10300012C00000000000001 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A10000012C00000000000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A10400022C00000000000002;
+			remoteInfo = AleClipShareExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A10500012C00000000000001 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				A10100122C00000000000012 /* AleClipShareExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		A10200002C00000000000000 /* AleClip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AleClip.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A10200122C00000000000012 /* AleClipShareExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = AleClipShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		A10200012C00000000000001 /* AleClipApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AleClipApp.swift; sourceTree = "<group>"; };
+		A10200022C00000000000002 /* ClipItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipItem.swift; sourceTree = "<group>"; };
+		A10200032C00000000000003 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
+		A10200042C00000000000004 /* LocalizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationService.swift; sourceTree = "<group>"; };
+		A10200052C00000000000005 /* HapticService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticService.swift; sourceTree = "<group>"; };
+		A10200062C00000000000006 /* ClipboardService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipboardService.swift; sourceTree = "<group>"; };
+		A10200072C00000000000007 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		A10200082C00000000000008 /* ClipRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipRowView.swift; sourceTree = "<group>"; };
+		A10200092C00000000000009 /* ClipDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipDetailView.swift; sourceTree = "<group>"; };
+		A102000A2C0000000000000A /* NewClipSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewClipSheet.swift; sourceTree = "<group>"; };
+		A102000B2C0000000000000B /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		A102000C2C0000000000000C /* WatermarkLogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatermarkLogoView.swift; sourceTree = "<group>"; };
+		A102000D2C0000000000000D /* ToastBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastBannerView.swift; sourceTree = "<group>"; };
+		A102000E2C0000000000000E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A102000F2C0000000000000F /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		A10200132C00000000000013 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A10200142C00000000000014 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A10200152C00000000000015 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A10200112C00000000000011 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		A10200162C00000000000016 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A10600012C00000000000001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A10600022C00000000000002 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A10700012C00000000000001 = {
+			isa = PBXGroup;
+			children = (
+				A10700022C00000000000002 /* AleClip */,
+				A10700072C00000000000007 /* AleClipShareExtension */,
+				A10700082C00000000000008 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A10700022C00000000000002 /* AleClip */ = {
+			isa = PBXGroup;
+			children = (
+				A10700032C00000000000003 /* App */,
+				A10700042C00000000000004 /* Models */,
+				A10700052C00000000000005 /* Services */,
+				A10700062C00000000000006 /* Views */,
+				A10700092C00000000000009 /* Resources */,
+				A10200152C00000000000015 /* Info.plist */,
+			);
+			path = AleClip;
+			sourceTree = "<group>";
+		};
+		A10700032C00000000000003 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				A10200012C00000000000001 /* AleClipApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		A10700042C00000000000004 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A10200022C00000000000002 /* ClipItem.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		A10700052C00000000000005 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A10200032C00000000000003 /* StorageService.swift */,
+				A10200042C00000000000004 /* LocalizationService.swift */,
+				A10200052C00000000000005 /* HapticService.swift */,
+				A10200062C00000000000006 /* ClipboardService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		A10700062C00000000000006 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A10200072C00000000000007 /* MainView.swift */,
+				A10200082C00000000000008 /* ClipRowView.swift */,
+				A10200092C00000000000009 /* ClipDetailView.swift */,
+				A102000A2C0000000000000A /* NewClipSheet.swift */,
+				A102000B2C0000000000000B /* SettingsView.swift */,
+				A102000C2C0000000000000C /* WatermarkLogoView.swift */,
+				A102000D2C0000000000000D /* ToastBannerView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A10700092C00000000000009 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A102000E2C0000000000000E /* Assets.xcassets */,
+				A102000F2C0000000000000F /* PrivacyInfo.xcprivacy */,
+				A10200102C00000000000010 /* Localizable.strings */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		A10700072C00000000000007 /* AleClipShareExtension */ = {
+			isa = PBXGroup;
+			children = (
+				A10200112C00000000000011 /* ShareViewController.swift */,
+				A10200162C00000000000016 /* Info.plist */,
+			);
+			path = AleClipShareExtension;
+			sourceTree = "<group>";
+		};
+		A10700082C00000000000008 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A10200002C00000000000000 /* AleClip.app */,
+				A10200122C00000000000012 /* AleClipShareExtension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A10400012C00000000000001 /* AleClip */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A10800012C00000000000001 /* Build configuration list for PBXNativeTarget "AleClip" */;
+			buildPhases = (
+				A10900012C00000000000001 /* Sources */,
+				A10600012C00000000000001 /* Frameworks */,
+				A10A00012C00000000000001 /* Resources */,
+				A10500012C00000000000001 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A10B00012C00000000000001 /* PBXTargetDependency */,
+			);
+			name = AleClip;
+			productName = AleClip;
+			productReference = A10200002C00000000000000 /* AleClip.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A10400022C00000000000002 /* AleClipShareExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A10800022C00000000000002 /* Build configuration list for PBXNativeTarget "AleClipShareExtension" */;
+			buildPhases = (
+				A10900022C00000000000002 /* Sources */,
+				A10600022C00000000000002 /* Frameworks */,
+				A10A00022C00000000000002 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AleClipShareExtension;
+			productName = AleClipShareExtension;
+			productReference = A10200122C00000000000012 /* AleClipShareExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A10000012C00000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					A10400012C00000000000001 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+					A10400022C00000000000002 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = A10800002C00000000000000 /* Build configuration list for PBXProject "AleClip" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				tr,
+				Base,
+			);
+			mainGroup = A10700012C00000000000001;
+			productRefGroup = A10700082C00000000000008 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A10400012C00000000000001 /* AleClip */,
+				A10400022C00000000000002 /* AleClipShareExtension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A10A00012C00000000000001 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A101000E2C0000000000000E /* Assets.xcassets in Resources */,
+				A101000F2C0000000000000F /* PrivacyInfo.xcprivacy in Resources */,
+				A10100102C00000000000010 /* Localizable.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A10A00022C00000000000002 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A10900012C00000000000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A10100012C00000000000001 /* AleClipApp.swift in Sources */,
+				A10100022C00000000000002 /* ClipItem.swift in Sources */,
+				A10100032C00000000000003 /* StorageService.swift in Sources */,
+				A10100042C00000000000004 /* LocalizationService.swift in Sources */,
+				A10100052C00000000000005 /* HapticService.swift in Sources */,
+				A10100062C00000000000006 /* ClipboardService.swift in Sources */,
+				A10100072C00000000000007 /* MainView.swift in Sources */,
+				A10100082C00000000000008 /* ClipRowView.swift in Sources */,
+				A10100092C00000000000009 /* ClipDetailView.swift in Sources */,
+				A101000A2C0000000000000A /* NewClipSheet.swift in Sources */,
+				A101000B2C0000000000000B /* SettingsView.swift in Sources */,
+				A101000C2C0000000000000C /* WatermarkLogoView.swift in Sources */,
+				A101000D2C0000000000000D /* ToastBannerView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A10900022C00000000000002 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A10100112C00000000000011 /* ShareViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A10B00012C00000000000001 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A10400022C00000000000002 /* AleClipShareExtension */;
+			targetProxy = A10300012C00000000000001 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		A10200102C00000000000010 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A10200132C00000000000013 /* en */,
+				A10200142C00000000000014 /* tr */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A10C00012C00000000000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDEFINED_VARIABLES = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A10C00022C00000000000002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDEFINED_VARIABLES = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A10C00032C00000000000003 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2026;
+				DEVELOPMENT_ASSET_PATHS = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = AleClip/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = AleClip;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 2.0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.themanoftalent.aleclip;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A10C00042C00000000000004 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2026;
+				DEVELOPMENT_ASSET_PATHS = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = AleClip/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = AleClip;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 2.0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.themanoftalent.aleclip;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		A10C00052C00000000000005 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2026;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = AleClipShareExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 2.0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.themanoftalent.aleclip.share;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A10C00062C00000000000006 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2026;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = AleClipShareExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 2.0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.themanoftalent.aleclip.share;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A10800002C00000000000000 /* Build configuration list for PBXProject "AleClip" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A10C00012C00000000000001 /* Debug */,
+				A10C00022C00000000000002 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A10800012C00000000000001 /* Build configuration list for PBXNativeTarget "AleClip" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A10C00032C00000000000003 /* Debug */,
+				A10C00042C00000000000004 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A10800022C00000000000002 /* Build configuration list for PBXNativeTarget "AleClipShareExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A10C00052C00000000000005 /* Debug */,
+				A10C00062C00000000000006 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+	};
+	rootObject = A10000012C00000000000001 /* Project object */;
+}
