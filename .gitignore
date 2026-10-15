@@ -1,0 +1,17 @@
+# Xcode
+.DS_Store
+*/.DS_Store
+build/
+DerivedData/
+*.xcuserstate
+project.xcworkspace/
+xcuserdata/
+*.xcuserdatad
+
+# Backups and Release Archives
+*.bak
+*.tmp
+*.xcarchive
+*.xcarchive.zip
+release-archive/
+

@@ -1,0 +1,74 @@
+/* AleClip for iOS - Türkçe Yerelleştirme */
+
+"app.title" = "AleClip";
+"search.placeholder" = "Kayıtlarda, notlarda, bağlantılarda ara...";
+
+"filter.all" = "Tümü";
+"filter.pinned" = "Sabitlenenler";
+"filter.text" = "Metin";
+"filter.links" = "Bağlantılar";
+"filter.images" = "Görseller";
+"filter.files" = "Dosyalar";
+"filter.colors" = "Renkler";
+"filter.deleted" = "Silinenler";
+
+"action.copy" = "Kopyala";
+"action.paste" = "Yapıştır";
+"action.pasteFromClipboard" = "Panodan Yapıştır";
+"action.newNote" = "Yeni Not";
+"action.pin" = "Sabitle";
+"action.unpin" = "Sabitlemeyi Kaldır";
+"action.edit" = "Düzenle";
+"action.share" = "Paylaş";
+"action.delete" = "Sil";
+"action.restore" = "Geri Yükle";
+"action.permanentlyDelete" = "Kalıcı Olarak Sil";
+"action.emptyTrash" = "Çöpü Boşalt";
+"action.undo" = "Geri Al";
+"action.cancel" = "Vazgeç";
+"action.save" = "Kaydet";
+"action.done" = "Tamam";
+
+"toast.copied" = "Panoya Kopyalandı!";
+"toast.deleted" = "Kayıt silindi";
+"toast.restored" = "Kayıt geri yüklendi";
+"toast.permanentlyDeleted" = "Kayıt kalıcı olarak silindi";
+"toast.detectedClipboard" = "Panodan yeni içerik algılandı";
+"toast.saveClipboard" = "Kaydet";
+
+"empty.noClips" = "Henüz kayıt yok. Başlamak için bir şey kopyalayın veya + tuşuna dokunun.";
+"empty.noMatch" = "Aramanızla eşleşen kayıt bulunamadı.";
+"empty.noDeletedClips" = "Çöp kutusu boş. Silinen kayıtlar burada görünür.";
+
+"card.rgbColor" = "RGB Renk";
+"card.websiteLink" = "Web Bağlantısı";
+"card.openLink" = "Safari'de Aç";
+"card.pinnedBadge" = "SABİT";
+
+"settings.title" = "Ayarlar";
+"settings.general" = "Genel";
+"settings.historyLimit" = "Geçmiş Sınırı";
+"settings.maxItems" = "Maksimum saklanacak kayıt:";
+"settings.autoCapture" = "Panoyu Otomatik Algıla";
+"settings.autoCaptureHelp" = "Uygulama her açıldığında panodaki yeni içeriği algılar.";
+"settings.hapticFeedback" = "Dokunsal Geri Bildirim";
+"settings.hapticHelp" = "Kopyalama ve kaydetme işlemlerinde hafif titreşim.";
+"settings.language" = "Dil / Language";
+"settings.langSystem" = "Sistem Varsayılanı";
+"settings.langEn" = "English";
+"settings.langTr" = "Türkçe";
+
+"settings.backup" = "Yedekleme ve Veriler";
+"settings.exportJson" = "Geçmişi JSON Olarak Dışa Aktar...";
+"settings.importJson" = "Geçmişi JSON'dan İçe Aktar...";
+"settings.clearUnpinned" = "Sabitlenmemişleri Çöpe Taşı";
+"settings.emptyTrashNow" = "Çöp Kutusunu Şimdi Temizle";
+"settings.clearSuccess" = "Sabitlenmemiş kayıtlar çöpe taşındı.";
+"settings.trashEmptySuccess" = "Çöp kutusu başarıyla temizlendi.";
+
+"about.title" = "AleClip Hakkında";
+"about.tagline" = "iPhone için modern, hafif ve yerel bir pano ve not yöneticisi.";
+"about.developedBy" = "SoftAI Yazılım tarafından geliştirildi";
+"about.developerName" = "Mehmet Akif Çifçi";
+"about.version" = "Sürüm %@ (%@)";
+"about.zeroData" = "Sıfır Telemetri • %100 Yerel Depolama";

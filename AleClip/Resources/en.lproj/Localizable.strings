@@ -1,0 +1,74 @@
+/* AleClip for iOS - English Localization */
+
+"app.title" = "AleClip";
+"search.placeholder" = "Search clips, notes, links, colors...";
+
+"filter.all" = "All";
+"filter.pinned" = "Pinned";
+"filter.text" = "Text";
+"filter.links" = "Links";
+"filter.images" = "Images";
+"filter.files" = "Files";
+"filter.colors" = "Colors";
+"filter.deleted" = "Deleted";
+
+"action.copy" = "Copy";
+"action.paste" = "Paste";
+"action.pasteFromClipboard" = "Paste from Clipboard";
+"action.newNote" = "New Note";
+"action.pin" = "Pin";
+"action.unpin" = "Unpin";
+"action.edit" = "Edit";
+"action.share" = "Share";
+"action.delete" = "Delete";
+"action.restore" = "Restore";
+"action.permanentlyDelete" = "Delete Permanently";
+"action.emptyTrash" = "Empty Trash";
+"action.undo" = "Undo";
+"action.cancel" = "Cancel";
+"action.save" = "Save";
+"action.done" = "Done";
+
+"toast.copied" = "Copied to Clipboard!";
+"toast.deleted" = "Clip deleted";
+"toast.restored" = "Clip restored";
+"toast.permanentlyDeleted" = "Clip permanently deleted";
+"toast.detectedClipboard" = "New Clipboard content detected";
+"toast.saveClipboard" = "Save";
+
+"empty.noClips" = "No clips yet. Copy anything or tap + to start.";
+"empty.noMatch" = "No clips match your search.";
+"empty.noDeletedClips" = "Trash is empty. Deleted items will appear here.";
+
+"card.rgbColor" = "RGB Color";
+"card.websiteLink" = "Website Link";
+"card.openLink" = "Open in Safari";
+"card.pinnedBadge" = "PIN";
+
+"settings.title" = "Settings";
+"settings.general" = "General";
+"settings.historyLimit" = "History Limit";
+"settings.maxItems" = "Maximum items stored:";
+"settings.autoCapture" = "Auto-Capture Clipboard";
+"settings.autoCaptureHelp" = "Check for new copied items when opening or resuming the app.";
+"settings.hapticFeedback" = "Haptic Feedback";
+"settings.hapticHelp" = "Vibrate subtly when copying or saving clips.";
+"settings.language" = "Language / Dil";
+"settings.langSystem" = "System Default";
+"settings.langEn" = "English";
+"settings.langTr" = "Türkçe";
+
+"settings.backup" = "Backup & Data";
+"settings.exportJson" = "Export History to JSON...";
+"settings.importJson" = "Import History from JSON...";
+"settings.clearUnpinned" = "Move Unpinned to Trash";
+"settings.emptyTrashNow" = "Empty Trash Now";
+"settings.clearSuccess" = "Unpinned items moved to Trash.";
+"settings.trashEmptySuccess" = "Trash emptied successfully.";
+
+"about.title" = "About AleClip";
+"about.tagline" = "A modern, lightweight native clipboard & scratchpad notes manager for iPhone.";
+"about.developedBy" = "Developed by SoftAI Yazılım";
+"about.developerName" = "Mehmet Akif Çifçi";
+"about.version" = "Version %@ (%@)";
+"about.zeroData" = "Zero Telemetry • 100% Local Storage";
