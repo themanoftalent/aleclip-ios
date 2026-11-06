@@ -81,3 +81,30 @@
 "sync.now" = "Sync Now";
 "sync.stop" = "Stop Syncing";
 "sync.last" = "Last synced: %@";
+
+/* Previously missing strings */
+"action.exportBackup" = "Export Backup";
+"action.importBackup" = "Import Backup";
+"action.permanentDelete" = "Delete Permanently";
+"detail.created" = "Created";
+"detail.length" = "Length";
+"detail.title" = "Clip Details";
+"detail.words" = "Words";
+"empty.title" = "No Clips Yet";
+"empty.subtitle" = "Copy something, then tap Paste to save it here.";
+"filter.trash" = "Trash";
+"search.noResults" = "No Results";
+"settings.about" = "About";
+"settings.activeClips" = "Active Clips";
+"settings.autoIngest" = "Save Clipboard When Opening";
+"settings.maxHistory" = "History Limit";
+"settings.soundEffects" = "Haptic Feedback";
+"settings.storage" = "Storage & Trash";
+"settings.trashClips" = "Clips in Trash";
+"toast.deletedMoved" = "Moved to Trash";
+"toast.newCaptured" = "New clip saved";
+"trash.empty" = "Trash Is Empty";
+"trash.emptyConfirmMessage" = "All clips in Trash will be permanently deleted. This can't be undone.";
+"trash.emptyConfirmTitle" = "Empty Trash?";
+"trash.emptyDesc" = "Deleted clips appear here so you can restore them.";
+"trash.title" = "Trash";

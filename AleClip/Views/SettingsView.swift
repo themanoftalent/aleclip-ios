@@ -158,10 +158,6 @@ public struct SettingsView: View {
                         }
                     }
                 }
-                .sheet(isPresented: $showFolderPicker) {
-                    FolderPicker { url in sync.setFolder(url) }
-                        .ignoresSafeArea()
-                }
 
                 // Backup & Migration
                 Section(header: Text(loc("settings.backup"))) {
@@ -367,6 +363,17 @@ public struct SettingsView: View {
                 )
             }
         }
+        // Folder picker for Sync with Mac. Kept on the NavigationStack (not the Form) so it
+        // doesn't clash with the backup importer, and so dismissing it doesn't close Settings.
+        .fileImporter(
+            isPresented: $showFolderPicker,
+            allowedContentTypes: [.folder],
+            allowsMultipleSelection: false
+        ) { result in
+            if case .success(let urls) = result, let url = urls.first {
+                sync.setFolder(url)
+            }
+        }
     }
 
     private func prepareExport() {
@@ -425,29 +432,4 @@ private struct ShareSheet: UIViewControllerRepresentable {
     }
 
     func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {}
-}
-
-// MARK: - Folder Picker (Files app; Google Drive appears under Locations)
-
-struct FolderPicker: UIViewControllerRepresentable {
-    let onPick: (URL) -> Void
-
-    func makeCoordinator() -> Coordinator { Coordinator(onPick: onPick) }
-
-    func makeUIViewController(context: Context) -> UIDocumentPickerViewController {
-        let picker = UIDocumentPickerViewController(forOpeningContentTypes: [.folder])
-        picker.allowsMultipleSelection = false
-        picker.delegate = context.coordinator
-        return picker
-    }
-
-    func updateUIViewController(_ uiViewController: UIDocumentPickerViewController, context: Context) {}
-
-    final class Coordinator: NSObject, UIDocumentPickerDelegate {
-        let onPick: (URL) -> Void
-        init(onPick: @escaping (URL) -> Void) { self.onPick = onPick }
-        func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
-            if let url = urls.first { onPick(url) }
-        }
-    }
 }

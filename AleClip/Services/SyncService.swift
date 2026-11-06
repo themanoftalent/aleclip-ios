@@ -139,10 +139,14 @@ public final class SyncService: ObservableObject {
                         } else {
                             shared.lastSync = Date()
                             UserDefaults.standard.set(shared.lastSync, forKey: shared.lastSyncKey)
-                            var msg = "Synced with \(incoming.payloads.count) other device\(incoming.payloads.count == 1 ? "" : "s")"
-                            if added > 0 { msg += " · \(added) new" }
-                            if removed > 0 { msg += " · \(removed) removed" }
-                            shared.statusMessage = msg
+                            if incoming.payloads.isEmpty {
+                                shared.statusMessage = "No Mac or Android sync data in this folder yet. Make sure you picked My Drive › AleClip, and that AleClip on your Mac has synced at least once."
+                            } else {
+                                var msg = "Synced with \(incoming.payloads.count) other device\(incoming.payloads.count == 1 ? "" : "s")"
+                                if added > 0 { msg += " · \(added) new" }
+                                if removed > 0 { msg += " · \(removed) removed" }
+                                shared.statusMessage = msg
+                            }
                         }
                     }
                 }
@@ -152,8 +156,20 @@ public final class SyncService: ObservableObject {
 
     // MARK: File IO (off the main thread, coordinated for File Provider folders like Google Drive)
 
+    /// The AleClip folder to use. If the user picked its parent (e.g. "My Drive" or
+    /// "On My iPhone") and it contains an "AleClip" folder, use that instead.
+    private nonisolated static func aleClipFolder(_ picked: URL) -> URL {
+        let fm = FileManager.default
+        if picked.lastPathComponent == "AleClip" { return picked }
+        if fm.fileExists(atPath: picked.appendingPathComponent(".sync").path) { return picked }
+        let child = picked.appendingPathComponent("AleClip", isDirectory: true)
+        var isDir: ObjCBool = false
+        if fm.fileExists(atPath: child.path, isDirectory: &isDir), isDir.boolValue { return child }
+        return picked
+    }
+
     private nonisolated static func syncDir(_ folder: URL) -> URL {
-        folder.appendingPathComponent(".sync", isDirectory: true)
+        aleClipFolder(folder).appendingPathComponent(".sync", isDirectory: true)
     }
 
     private nonisolated static func readIncomingPayloads(folder: URL, excluding ownName: String) -> (payloads: [SyncPayloadIn], error: String?) {
@@ -168,7 +184,7 @@ public final class SyncService: ObservableObject {
             candidates = (try? fm.contentsOfDirectory(at: url, includingPropertiesForKeys: nil)) ?? []
         }
         // Older Mac versions wrote payloads next to the clip folders.
-        let root = (try? fm.contentsOfDirectory(at: folder, includingPropertiesForKeys: nil)) ?? []
+        let root = (try? fm.contentsOfDirectory(at: aleClipFolder(folder), includingPropertiesForKeys: nil)) ?? []
         candidates += root.filter { $0.lastPathComponent.hasPrefix("sync_payload_") }
 
         let decoder = JSONDecoder()

@@ -81,3 +81,30 @@
 "sync.now" = "Şimdi Eşitle";
 "sync.stop" = "Eşitlemeyi Durdur";
 "sync.last" = "Son eşitleme: %@";
+
+/* Previously missing strings */
+"action.exportBackup" = "Yedeği Dışa Aktar";
+"action.importBackup" = "Yedeği İçe Aktar";
+"action.permanentDelete" = "Kalıcı Olarak Sil";
+"detail.created" = "Oluşturulma";
+"detail.length" = "Uzunluk";
+"detail.title" = "Klip Ayrıntıları";
+"detail.words" = "Kelime";
+"empty.title" = "Henüz Klip Yok";
+"empty.subtitle" = "Bir şey kopyalayın, ardından buraya kaydetmek için Yapıştır'a dokunun.";
+"filter.trash" = "Çöp Kutusu";
+"search.noResults" = "Sonuç Yok";
+"settings.about" = "Hakkında";
+"settings.activeClips" = "Etkin Klipler";
+"settings.autoIngest" = "Açılışta Panoyu Kaydet";
+"settings.maxHistory" = "Geçmiş Sınırı";
+"settings.soundEffects" = "Dokunsal Geri Bildirim";
+"settings.storage" = "Depolama ve Çöp Kutusu";
+"settings.trashClips" = "Çöp Kutusundaki Klipler";
+"toast.deletedMoved" = "Çöp Kutusuna taşındı";
+"toast.newCaptured" = "Yeni klip kaydedildi";
+"trash.empty" = "Çöp Kutusu Boş";
+"trash.emptyConfirmMessage" = "Çöp Kutusundaki tüm klipler kalıcı olarak silinecek. Bu işlem geri alınamaz.";
+"trash.emptyConfirmTitle" = "Çöp Kutusu Boşaltılsın mı?";
+"trash.emptyDesc" = "Silinen klipler burada görünür, böylece onları geri yükleyebilirsiniz.";
+"trash.title" = "Çöp Kutusu";
