@@ -25,6 +25,8 @@ public struct SettingsView: View {
     @State private var exportData: ExportDoc? = nil
     @State private var alertMessage: String? = nil
     @State private var showAlert: Bool = false
+    @State private var showFolderPicker: Bool = false
+    @ObservedObject private var sync = SyncService.shared
 
     private let historyLimits = [25, 50, 100, 200, 500]
 
@@ -108,6 +110,57 @@ public struct SettingsView: View {
                             }
                         }
                     }
+                }
+
+                // Sync with Mac (Google Drive folder)
+                Section(header: Text(loc("sync.title")), footer: Text(loc("sync.footer"))) {
+                    if let name = sync.folderName {
+                        HStack {
+                            Image(systemName: "folder.fill")
+                                .foregroundColor(SpectrumColors.azure)
+                            Text(name)
+                            Spacer()
+                            if sync.isSyncing { ProgressView() }
+                        }
+                        if !sync.statusMessage.isEmpty {
+                            Text(sync.statusMessage)
+                                .font(.footnote)
+                                .foregroundColor(.secondary)
+                        }
+                        if let last = sync.lastSync {
+                            Text(locF("sync.last", last.formatted(date: .abbreviated, time: .shortened)))
+                                .font(.footnote)
+                                .foregroundColor(.secondary)
+                        }
+                        Button(action: { sync.syncNow() }) {
+                            HStack {
+                                Image(systemName: "arrow.triangle.2.circlepath")
+                                Text(loc("sync.now"))
+                            }
+                        }
+                        .disabled(sync.isSyncing)
+                        Button(loc("sync.changeFolder")) { showFolderPicker = true }
+                        Button(role: .destructive, action: { sync.disconnect() }) {
+                            Text(loc("sync.stop"))
+                        }
+                    } else {
+                        Button(action: { showFolderPicker = true }) {
+                            HStack {
+                                Image(systemName: "folder.badge.plus")
+                                    .foregroundColor(SpectrumColors.azure)
+                                Text(loc("sync.choose"))
+                            }
+                        }
+                        if !sync.statusMessage.isEmpty {
+                            Text(sync.statusMessage)
+                                .font(.footnote)
+                                .foregroundColor(.red)
+                        }
+                    }
+                }
+                .sheet(isPresented: $showFolderPicker) {
+                    FolderPicker { url in sync.setFolder(url) }
+                        .ignoresSafeArea()
                 }
 
                 // Backup & Migration
@@ -372,4 +425,29 @@ private struct ShareSheet: UIViewControllerRepresentable {
     }
 
     func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {}
+}
+
+// MARK: - Folder Picker (Files app; Google Drive appears under Locations)
+
+struct FolderPicker: UIViewControllerRepresentable {
+    let onPick: (URL) -> Void
+
+    func makeCoordinator() -> Coordinator { Coordinator(onPick: onPick) }
+
+    func makeUIViewController(context: Context) -> UIDocumentPickerViewController {
+        let picker = UIDocumentPickerViewController(forOpeningContentTypes: [.folder])
+        picker.allowsMultipleSelection = false
+        picker.delegate = context.coordinator
+        return picker
+    }
+
+    func updateUIViewController(_ uiViewController: UIDocumentPickerViewController, context: Context) {}
+
+    final class Coordinator: NSObject, UIDocumentPickerDelegate {
+        let onPick: (URL) -> Void
+        init(onPick: @escaping (URL) -> Void) { self.onPick = onPick }
+        func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+            if let url = urls.first { onPick(url) }
+        }
+    }
 }

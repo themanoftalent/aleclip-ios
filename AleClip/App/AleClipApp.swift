@@ -31,6 +31,7 @@ struct AleClipApp: App {
         .onChange(of: scenePhase) { newPhase in
             if newPhase == .active {
                 clipboard.checkPasteboardOnForeground()
+                SyncService.shared.scheduleSync(delay: 0.5)
             }
         }
     }

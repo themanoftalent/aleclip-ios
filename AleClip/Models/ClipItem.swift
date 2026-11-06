@@ -108,6 +108,35 @@ public struct ClipItem: Identifiable, Codable, Sendable, Equatable {
     public var lastUsedAt: Date
     public var isPinned: Bool
     public var contentHash: String
+    /// Which device captured the clip ("Mac", "iPhone", "Android"). Shared via sync.
+    public var sourceDevice: String?
+
+    enum CodingKeys: String, CodingKey {
+        case id, type, plainText, htmlContent, rtfData, imageFileName, url, colorHex
+        case title, sourceAppName, createdAt, lastUsedAt, isPinned, contentHash, sourceDevice
+    }
+
+    /// Tolerant decoding so clips synced from the Mac or Android always load:
+    /// missing fields get defaults and unknown types (e.g. Mac "code") become plain text.
+    public init(from decoder: Decoder) throws {
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = (try? c.decode(UUID.self, forKey: .id)) ?? UUID()
+        let rawType = (try? c.decode(String.self, forKey: .type)) ?? "text"
+        self.type = ClipType(rawValue: rawType) ?? .text
+        self.plainText = (try? c.decode(String.self, forKey: .plainText)) ?? ""
+        self.htmlContent = try? c.decodeIfPresent(String.self, forKey: .htmlContent)
+        self.rtfData = try? c.decodeIfPresent(Data.self, forKey: .rtfData)
+        self.imageFileName = try? c.decodeIfPresent(String.self, forKey: .imageFileName)
+        self.url = try? c.decodeIfPresent(String.self, forKey: .url)
+        self.colorHex = try? c.decodeIfPresent(String.self, forKey: .colorHex)
+        self.title = try? c.decodeIfPresent(String.self, forKey: .title)
+        self.sourceAppName = try? c.decodeIfPresent(String.self, forKey: .sourceAppName)
+        self.createdAt = (try? c.decode(Date.self, forKey: .createdAt)) ?? Date()
+        self.lastUsedAt = (try? c.decode(Date.self, forKey: .lastUsedAt)) ?? self.createdAt
+        self.isPinned = (try? c.decode(Bool.self, forKey: .isPinned)) ?? false
+        self.contentHash = (try? c.decode(String.self, forKey: .contentHash)) ?? UUID().uuidString
+        self.sourceDevice = try? c.decodeIfPresent(String.self, forKey: .sourceDevice)
+    }
 
     // Convenient aliases
     public var content: String {
@@ -133,8 +162,10 @@ public struct ClipItem: Identifiable, Codable, Sendable, Equatable {
         createdAt: Date = Date(),
         lastUsedAt: Date = Date(),
         isPinned: Bool = false,
-        contentHash: String = UUID().uuidString
+        contentHash: String = UUID().uuidString,
+        sourceDevice: String? = "iPhone"
     ) {
+        self.sourceDevice = sourceDevice
         self.id = id
         self.type = type
         self.plainText = plainText

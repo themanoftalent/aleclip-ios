@@ -72,3 +72,12 @@
 "about.developerName" = "Mehmet Akif Çifçi";
 "about.version" = "Version %@ (%@)";
 "about.zeroData" = "Zero Telemetry • 100% Local Storage";
+
+/* Sync with Mac */
+"sync.title" = "Sync with Mac";
+"sync.footer" = "Pick the AleClip folder in Google Drive (Files › Google Drive › My Drive › AleClip). Clips and deletions sync with AleClip on your Mac and Android through its hidden .sync folder.";
+"sync.choose" = "Choose AleClip Folder…";
+"sync.changeFolder" = "Change Folder…";
+"sync.now" = "Sync Now";
+"sync.stop" = "Stop Syncing";
+"sync.last" = "Last synced: %@";

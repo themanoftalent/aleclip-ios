@@ -72,3 +72,12 @@
 "about.developerName" = "Mehmet Akif Çifçi";
 "about.version" = "Sürüm %@ (%@)";
 "about.zeroData" = "Sıfır Telemetri • %100 Yerel Depolama";
+
+/* Sync with Mac */
+"sync.title" = "Mac ile Eşitle";
+"sync.footer" = "Google Drive'daki AleClip klasörünü seçin (Dosyalar › Google Drive › Drive'ım › AleClip). Klipler ve silinenler, gizli .sync klasörü üzerinden Mac ve Android'deki AleClip ile eşitlenir.";
+"sync.choose" = "AleClip Klasörünü Seç…";
+"sync.changeFolder" = "Klasörü Değiştir…";
+"sync.now" = "Şimdi Eşitle";
+"sync.stop" = "Eşitlemeyi Durdur";
+"sync.last" = "Son eşitleme: %@";

@@ -12,6 +12,7 @@
 		A10100032C00000000000003 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10200032C00000000000003 /* StorageService.swift */; };
 		A10100042C00000000000004 /* LocalizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10200042C00000000000004 /* LocalizationService.swift */; };
 		A10100052C00000000000005 /* HapticService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10200052C00000000000005 /* HapticService.swift */; };
+		A10100FE2C000000000000FE /* SyncService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10200FE2C000000000000FE /* SyncService.swift */; };
 		A10100062C00000000000006 /* ClipboardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10200062C00000000000006 /* ClipboardService.swift */; };
 		A10100072C00000000000007 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10200072C00000000000007 /* MainView.swift */; };
 		A10100082C00000000000008 /* ClipRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10200082C00000000000008 /* ClipRowView.swift */; };
@@ -59,6 +60,7 @@
 		A10200032C00000000000003 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		A10200042C00000000000004 /* LocalizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationService.swift; sourceTree = "<group>"; };
 		A10200052C00000000000005 /* HapticService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticService.swift; sourceTree = "<group>"; };
+		A10200FE2C000000000000FE /* SyncService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncService.swift; sourceTree = "<group>"; };
 		A10200062C00000000000006 /* ClipboardService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipboardService.swift; sourceTree = "<group>"; };
 		A10200072C00000000000007 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		A10200082C00000000000008 /* ClipRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipRowView.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				A10200032C00000000000003 /* StorageService.swift */,
 				A10200042C00000000000004 /* LocalizationService.swift */,
 				A10200052C00000000000005 /* HapticService.swift */,
+				A10200FE2C000000000000FE /* SyncService.swift */,
 				A10200062C00000000000006 /* ClipboardService.swift */,
 			);
 			path = Services;
@@ -292,6 +295,7 @@
 				A10100032C00000000000003 /* StorageService.swift in Sources */,
 				A10100042C00000000000004 /* LocalizationService.swift in Sources */,
 				A10100052C00000000000005 /* HapticService.swift in Sources */,
+				A10100FE2C000000000000FE /* SyncService.swift in Sources */,
 				A10100062C00000000000006 /* ClipboardService.swift in Sources */,
 				A10100072C00000000000007 /* MainView.swift in Sources */,
 				A10100082C00000000000008 /* ClipRowView.swift in Sources */,
