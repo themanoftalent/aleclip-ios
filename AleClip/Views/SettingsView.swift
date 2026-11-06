@@ -47,7 +47,7 @@ public struct SettingsView: View {
                                     .font(.system(size: 22, weight: .black, design: .rounded))
                                     .foregroundStyle(SpectrumColors.gradient)
 
-                                Text(locF("about.version", "2.0.1", "2026"))
+                                Text(locF("about.version", "2.2.0", "2026"))
                                     .font(.system(size: 12))
                                     .foregroundColor(.secondary)
                             }
