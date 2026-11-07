@@ -42,18 +42,38 @@ public final class SyncService: ObservableObject {
     private let bookmarkKey = "AleClipSyncFolderBookmark"
     private let lastSyncKey = "AleClipLastSync"
     private var debounce: DispatchWorkItem?
+    private var foregroundTimer: Timer?
 
     public var isConfigured: Bool { UserDefaults.standard.data(forKey: bookmarkKey) != nil }
 
     /// Stable per-install file name, e.g. "sync_payload_iPhone-3F2A.json".
     private var ownFileName: String {
         let vendor = UIDevice.current.identifierForVendor?.uuidString.prefix(4) ?? "0000"
-        return "sync_payload_\(UIDevice.current.model)-\(vendor).json"
+        let model = UIDevice.current.model.replacingOccurrences(of: " ", with: "-")
+        return "sync_payload_\(model)-\(vendor).json"
     }
 
     private init() {
         lastSync = UserDefaults.standard.object(forKey: lastSyncKey) as? Date
         if let url = resolveFolder() { folderName = url.lastPathComponent }
+    }
+
+    // MARK: - Foreground Automatic Sync
+
+    public func startForegroundSyncTimer() {
+        stopForegroundSyncTimer()
+        guard isConfigured else { return }
+        foregroundTimer = Timer.scheduledTimer(withTimeInterval: 15.0, repeats: true) { [weak self] _ in
+            Task { @MainActor [weak self] in
+                guard let self = self, self.isConfigured, !self.isSyncing else { return }
+                self.syncNow()
+            }
+        }
+    }
+
+    public func stopForegroundSyncTimer() {
+        foregroundTimer?.invalidate()
+        foregroundTimer = nil
     }
 
     // MARK: Folder selection
@@ -74,6 +94,7 @@ public final class SyncService: ObservableObject {
     }
 
     public func disconnect() {
+        stopForegroundSyncTimer()
         UserDefaults.standard.removeObject(forKey: bookmarkKey)
         folderName = nil
         statusMessage = ""
@@ -160,6 +181,9 @@ public final class SyncService: ObservableObject {
     /// "On My iPhone") and it contains an "AleClip" folder, use that instead.
     private nonisolated static func aleClipFolder(_ picked: URL) -> URL {
         let fm = FileManager.default
+        if picked.lastPathComponent == ".sync" {
+            return picked.deletingLastPathComponent()
+        }
         if picked.lastPathComponent == "AleClip" { return picked }
         if fm.fileExists(atPath: picked.appendingPathComponent(".sync").path) { return picked }
         let child = picked.appendingPathComponent("AleClip", isDirectory: true)
@@ -190,7 +214,7 @@ public final class SyncService: ObservableObject {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
         var payloads: [SyncPayloadIn] = []
-        for file in candidates where file.pathExtension == "json" && file.lastPathComponent != ownName {
+        for file in candidates where file.pathExtension == "json" && file.lastPathComponent != ownName && file.lastPathComponent.hasPrefix("sync_payload") {
             var data: Data?
             var err: NSError?
             NSFileCoordinator().coordinate(readingItemAt: file, options: [], error: &err) { url in

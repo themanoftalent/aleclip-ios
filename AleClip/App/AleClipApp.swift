@@ -32,6 +32,9 @@ struct AleClipApp: App {
             if newPhase == .active {
                 clipboard.checkPasteboardOnForeground()
                 SyncService.shared.scheduleSync(delay: 0.5)
+                SyncService.shared.startForegroundSyncTimer()
+            } else {
+                SyncService.shared.stopForegroundSyncTimer()
             }
         }
     }
